@@ -1,0 +1,47 @@
+{
+    "os": "Windows-10-10.0.22621-SP0",
+    "python": "3.11.0",
+    "heartbeatAt": "2023-10-12T15:46:36.948843",
+    "startedAt": "2023-10-12T15:46:36.401428",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "C:\\Users\\brayd\\Projects\\Machine Learning\\MechTransformer\\temporary_train.py",
+    "codePathLocal": "temporary_train.py",
+    "codePath": "temporary_train.py",
+    "host": "Braydens-omen",
+    "username": "brayd",
+    "executable": "C:\\Users\\brayd\\Projects\\Machine Learning\\MechTransformer\\venv\\Scripts\\python.exe",
+    "cpu_count": 14,
+    "cpu_count_logical": 20,
+    "cpu_freq": {
+        "current": 2300.0,
+        "min": 0.0,
+        "max": 2300.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2300.0,
+            "min": 0.0,
+            "max": 2300.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 855.1533164978027,
+            "used": 830.1812210083008
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+            "memory_total": 8589934592
+        }
+    ],
+    "memory": {
+        "total": 15.675052642822266
+    }
+}
