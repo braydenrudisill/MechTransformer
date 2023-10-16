@@ -1,30 +1,33 @@
-from temporary_train import MechTransformer
 import torch
 
-DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-SRC_VOCAB_SIZE = 298
-TGT_VOCAB_SIZE = 298
-EMB_SIZE = 256
-NHEAD = 1
-FFN_HID_DIM = 2048
-BATCH_SIZE = 64
-NUM_ENCODER_LAYERS = 4
-NUM_DECODER_LAYERS = 4
-NUM_EPOCHS = 1
-LEARNING_RATE = 0.0001
+src, tgt = torch.ones(5, 5), torch.ones(5, 5)
 
-transformer = MechTransformer(NUM_ENCODER_LAYERS, NUM_DECODER_LAYERS, EMB_SIZE, NHEAD, SRC_VOCAB_SIZE, TGT_VOCAB_SIZE, FFN_HID_DIM)
+pad_idx = 3
 
-for p in transformer.parameters():
-    if p.dim() > 1:
-        torch.nn.init.xavier_uniform_(p)
+src[0, 1] = 3
+src[2, 3] = 3
 
-transformer = transformer.to(DEVICE)
+tgt[4, 1] = 3
+tgt[0, 3] = 3
 
-PAD_IDX = 2
+# print(src, tgt)
 
-criterion = torch.nn.CrossEntropyLoss(ignore_index=PAD_IDX)
 
-optimizer = torch.optim.Adam(transformer.parameters(), lr=LEARNING_RATE, betas=(0.9, 0.98), eps=1e-9)
+src_padding_mask, tgt_padding_mask = (
+        mask
+        .float()
+        .masked_fill(mask == pad_idx, float('-inf'))
+        .masked_fill(mask != pad_idx, 0.0)
+        for mask in (src, tgt)
+    )
 
-torch.save(transformer.state_dict(), 'trained_models/USPTO_MIT_OCT_4.pth')
+spm2 = (src == pad_idx)
+tpm2 = (tgt == pad_idx)
+
+print(src_padding_mask + src)
+print(tgt_padding_mask + tgt)
+#
+# print(spm2)
+# print(tpm2)
+
+

@@ -1,0 +1,24 @@
+
+  0%|          | 0/6392 [00:00<?, ?it/s]
+  0%|          | 0/6392 [00:05<?, ?it/s]
+Traceback (most recent call last):
+  File "/Users/braydenrudisill/Projects/MechTransformer/train.py", line 139, in <module>
+    train_loss = train_epoch(transformer, optimizer)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/braydenrudisill/Projects/MechTransformer/train.py", line 101, in train_epoch
+    loss = loss_fn(logits.reshape(-1, logits.shape[-1]), tgt_out.reshape(-1))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/braydenrudisill/Projects/MechTransformer/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/braydenrudisill/Projects/MechTransformer/venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/braydenrudisill/Projects/MechTransformer/venv/lib/python3.11/site-packages/torch/nn/modules/loss.py", line 1179, in forward
+    return F.cross_entropy(input, target, weight=self.weight,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/braydenrudisill/Projects/MechTransformer/venv/lib/python3.11/site-packages/torch/nn/functional.py", line 3053, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(input, target, weight, _Reduction.get_enum(reduction), ignore_index, label_smoothing)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Expected input batch_size (11008) to match target batch_size (11049).
+logits.shape=torch.Size([128, 86, 298])

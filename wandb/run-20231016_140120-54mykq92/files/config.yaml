@@ -1,0 +1,64 @@
+wandb_version: 1
+
+learning_rate:
+  desc: null
+  value: 0.0001
+architecture:
+  desc: null
+  value: Mechformer
+dataset:
+  desc: null
+  value: data/MIT_separated_augm/src-train.txt
+tokenizer:
+  desc: null
+  value: data/MIT_separated_augm/tokenizer.json
+SRC_VOCAB_SIZE:
+  desc: null
+  value: 298
+TGT_VOCAB_SIZE:
+  desc: null
+  value: 298
+epochs:
+  desc: null
+  value: 150
+EMB_SIZE:
+  desc: null
+  value: 512
+NHEAD:
+  desc: null
+  value: 8
+FFN_HID_DIM:
+  desc: null
+  value: 512
+BATCH_SIZE:
+  desc: null
+  value: 128
+NUM_ENCODER_LAYERS:
+  desc: null
+  value: 4
+NUM_DECODER_LAYERS:
+  desc: null
+  value: 4
+_wandb:
+  desc: null
+  value:
+    python_version: 3.11.5
+    cli_version: 0.15.12
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1697490080.594195
+    t:
+      1:
+      - 1
+      - 49
+      - 51
+      - 55
+      3:
+      - 16
+      - 23
+      4: 3.11.5
+      5: 0.15.12
+      8:
+      - 5
+      13: darwin-arm64

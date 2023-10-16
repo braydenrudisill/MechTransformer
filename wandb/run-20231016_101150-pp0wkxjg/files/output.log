@@ -1,0 +1,11 @@
+
+  0%|          | 0/6392 [00:00<?, ?it/s]
+  0%|          | 0/6392 [00:05<?, ?it/s]
+Traceback (most recent call last):
+  File "/Users/braydenrudisill/Projects/MechTransformer/train.py", line 137, in <module>
+    train_loss = train_epoch(transformer, optimizer)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/braydenrudisill/Projects/MechTransformer/train.py", line 99, in train_epoch
+    loss = loss_fn(logits.reshape(1, logits.shape[-1]), tgt_out)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: shape '[1, 298]' is invalid for input of size 3318528

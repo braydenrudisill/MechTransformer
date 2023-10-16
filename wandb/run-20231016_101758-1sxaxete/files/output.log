@@ -1,0 +1,12 @@
+
+  0%|          | 0/6392 [00:00<?, ?it/s]
+  0%|          | 0/6392 [00:05<?, ?it/s]
+Traceback (most recent call last):
+  File "/Users/braydenrudisill/Projects/MechTransformer/train.py", line 141, in <module>
+    train_loss = train_epoch(transformer, optimizer)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/braydenrudisill/Projects/MechTransformer/train.py", line 100, in train_epoch
+    print(logits.reshape(-1, logits.shape[0].shape))
+                             ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'int' object has no attribute 'shape'
+torch.Size([11049])

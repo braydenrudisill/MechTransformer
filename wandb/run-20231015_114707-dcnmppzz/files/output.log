@@ -1,0 +1,10 @@
+/Users/braydenrudisill/Projects/MechTransformer/venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+Traceback (most recent call last):
+  File "/Users/braydenrudisill/Projects/MechTransformer/train.py", line 128, in <module>
+    train_loss = train_epoch(transformer, optimizer)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/braydenrudisill/Projects/MechTransformer/train.py", line 79, in train_epoch
+    for src, tgt in train:
+        ^^^^^^^^
+TypeError: cannot unpack non-iterable EncodedBatch object

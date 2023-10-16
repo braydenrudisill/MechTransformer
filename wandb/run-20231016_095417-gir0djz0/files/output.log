@@ -1,0 +1,14 @@
+/Users/braydenrudisill/Projects/MechTransformer/venv/lib/python3.11/site-packages/torch/nn/modules/transformer.py:282: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+
+  0%|          | 1/6392 [00:22<39:18:00, 22.14s/it]
+Traceback (most recent call last):
+  File "/Users/braydenrudisill/Projects/MechTransformer/train.py", line 133, in <module>
+    train_loss = train_epoch(transformer, optimizer)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/braydenrudisill/Projects/MechTransformer/train.py", line 98, in train_epoch
+    loss.backward()
+  File "/Users/braydenrudisill/Projects/MechTransformer/venv/lib/python3.11/site-packages/torch/_tensor.py", line 492, in backward
+    torch.autograd.backward(
+  File "/Users/braydenrudisill/Projects/MechTransformer/venv/lib/python3.11/site-packages/torch/autograd/__init__.py", line 251, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass

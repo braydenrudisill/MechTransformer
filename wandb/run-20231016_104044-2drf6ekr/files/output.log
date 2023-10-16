@@ -1,0 +1,117 @@
+
+  0%|          | 0/6392 [00:00<?, ?it/s]
+src.shape=torch.Size([128, 243]), tgt_input.shape=torch.Size([128, 86]), src_mask.shape=torch.Size([243, 243]), torch.Size([128, 243])
+logits.shape=torch.Size([128, 86, 298])
+tgt_out.shape=torch.Size([128, 86])
+
+  0%|          | 1/6392 [00:11<20:27:51, 11.53s/it]
+src.shape=torch.Size([128, 220]), tgt_input.shape=torch.Size([128, 101]), src_mask.shape=torch.Size([220, 220]), torch.Size([128, 220])
+logits.shape=torch.Size([128, 101, 298])
+tgt_out.shape=torch.Size([128, 101])
+
+  0%|          | 2/6392 [00:21<19:11:25, 10.81s/it]
+src.shape=torch.Size([128, 202]), tgt_input.shape=torch.Size([128, 86]), src_mask.shape=torch.Size([202, 202]), torch.Size([128, 202])
+logits.shape=torch.Size([128, 86, 298])
+tgt_out.shape=torch.Size([128, 86])
+
+  0%|          | 3/6392 [00:30<17:25:19,  9.82s/it]
+src.shape=torch.Size([128, 216]), tgt_input.shape=torch.Size([128, 117]), src_mask.shape=torch.Size([216, 216]), torch.Size([128, 216])
+logits.shape=torch.Size([128, 117, 298])
+tgt_out.shape=torch.Size([128, 117])
+
+  0%|          | 4/6392 [00:41<18:16:35, 10.30s/it]
+src.shape=torch.Size([128, 187]), tgt_input.shape=torch.Size([128, 90]), src_mask.shape=torch.Size([187, 187]), torch.Size([128, 187])
+logits.shape=torch.Size([128, 90, 298])
+tgt_out.shape=torch.Size([128, 90])
+
+  0%|          | 5/6392 [00:49<16:53:44,  9.52s/it]
+src.shape=torch.Size([128, 201]), tgt_input.shape=torch.Size([128, 89]), src_mask.shape=torch.Size([201, 201]), torch.Size([128, 201])
+logits.shape=torch.Size([128, 89, 298])
+tgt_out.shape=torch.Size([128, 89])
+
+  0%|          | 6/6392 [00:58<16:24:47,  9.25s/it]
+src.shape=torch.Size([128, 163]), tgt_input.shape=torch.Size([128, 98]), src_mask.shape=torch.Size([163, 163]), torch.Size([128, 163])
+logits.shape=torch.Size([128, 98, 298])
+tgt_out.shape=torch.Size([128, 98])
+
+  0%|          | 7/6392 [01:05<15:11:17,  8.56s/it]
+src.shape=torch.Size([128, 238]), tgt_input.shape=torch.Size([128, 97]), src_mask.shape=torch.Size([238, 238]), torch.Size([128, 238])
+logits.shape=torch.Size([128, 97, 298])
+tgt_out.shape=torch.Size([128, 97])
+
+  0%|          | 8/6392 [01:17<16:50:43,  9.50s/it]
+src.shape=torch.Size([128, 138]), tgt_input.shape=torch.Size([128, 110]), src_mask.shape=torch.Size([138, 138]), torch.Size([128, 138])
+logits.shape=torch.Size([128, 110, 298])
+tgt_out.shape=torch.Size([128, 110])
+
+  0%|          | 9/6392 [01:24<15:27:36,  8.72s/it]
+src.shape=torch.Size([128, 232]), tgt_input.shape=torch.Size([128, 75]), src_mask.shape=torch.Size([232, 232]), torch.Size([128, 232])
+logits.shape=torch.Size([128, 75, 298])
+tgt_out.shape=torch.Size([128, 75])
+
+  0%|          | 10/6392 [01:33<16:03:48,  9.06s/it]
+src.shape=torch.Size([128, 222]), tgt_input.shape=torch.Size([128, 80]), src_mask.shape=torch.Size([222, 222]), torch.Size([128, 222])
+logits.shape=torch.Size([128, 80, 298])
+tgt_out.shape=torch.Size([128, 80])
+
+  0%|          | 11/6392 [01:43<16:13:09,  9.15s/it]
+src.shape=torch.Size([128, 228]), tgt_input.shape=torch.Size([128, 86]), src_mask.shape=torch.Size([228, 228]), torch.Size([128, 228])
+logits.shape=torch.Size([128, 86, 298])
+tgt_out.shape=torch.Size([128, 86])
+
+  0%|          | 12/6392 [01:53<16:35:01,  9.36s/it]
+src.shape=torch.Size([128, 224]), tgt_input.shape=torch.Size([128, 85]), src_mask.shape=torch.Size([224, 224]), torch.Size([128, 224])
+logits.shape=torch.Size([128, 85, 298])
+tgt_out.shape=torch.Size([128, 85])
+
+  0%|          | 13/6392 [02:02<16:52:19,  9.52s/it]
+src.shape=torch.Size([128, 233]), tgt_input.shape=torch.Size([128, 84]), src_mask.shape=torch.Size([233, 233]), torch.Size([128, 233])
+logits.shape=torch.Size([128, 84, 298])
+tgt_out.shape=torch.Size([128, 84])
+
+  0%|          | 14/6392 [02:13<17:13:59,  9.73s/it]
+src.shape=torch.Size([128, 218]), tgt_input.shape=torch.Size([128, 118]), src_mask.shape=torch.Size([218, 218]), torch.Size([128, 218])
+logits.shape=torch.Size([128, 118, 298])
+tgt_out.shape=torch.Size([128, 118])
+
+  0%|          | 15/6392 [02:25<18:29:58, 10.44s/it]
+src.shape=torch.Size([128, 254]), tgt_input.shape=torch.Size([128, 85]), src_mask.shape=torch.Size([254, 254]), torch.Size([128, 254])
+logits.shape=torch.Size([128, 85, 298])
+tgt_out.shape=torch.Size([128, 85])
+
+  0%|          | 16/6392 [02:37<19:24:14, 10.96s/it]
+src.shape=torch.Size([128, 223]), tgt_input.shape=torch.Size([128, 100]), src_mask.shape=torch.Size([223, 223]), torch.Size([128, 223])
+logits.shape=torch.Size([128, 100, 298])
+tgt_out.shape=torch.Size([128, 100])
+
+  0%|          | 17/6392 [02:47<19:02:12, 10.75s/it]
+src.shape=torch.Size([128, 245]), tgt_input.shape=torch.Size([128, 101]), src_mask.shape=torch.Size([245, 245]), torch.Size([128, 245])
+logits.shape=torch.Size([128, 101, 298])
+tgt_out.shape=torch.Size([128, 101])
+
+  0%|          | 18/6392 [02:59<19:35:53, 11.07s/it]
+src.shape=torch.Size([128, 205]), tgt_input.shape=torch.Size([128, 87]), src_mask.shape=torch.Size([205, 205]), torch.Size([128, 205])
+logits.shape=torch.Size([128, 87, 298])
+tgt_out.shape=torch.Size([128, 87])
+
+  0%|          | 19/6392 [03:08<18:22:02, 10.38s/it]
+src.shape=torch.Size([128, 167]), tgt_input.shape=torch.Size([128, 81]), src_mask.shape=torch.Size([167, 167]), torch.Size([128, 167])
+logits.shape=torch.Size([128, 81, 298])
+tgt_out.shape=torch.Size([128, 81])
+
+  0%|          | 20/6392 [03:14<16:16:57,  9.20s/it]
+src.shape=torch.Size([128, 215]), tgt_input.shape=torch.Size([128, 96]), src_mask.shape=torch.Size([215, 215]), torch.Size([128, 215])
+logits.shape=torch.Size([128, 96, 298])
+tgt_out.shape=torch.Size([128, 96])
+
+  0%|          | 21/6392 [03:24<16:29:42,  9.32s/it]
+src.shape=torch.Size([128, 210]), tgt_input.shape=torch.Size([128, 97]), src_mask.shape=torch.Size([210, 210]), torch.Size([128, 210])
+logits.shape=torch.Size([128, 97, 298])
+tgt_out.shape=torch.Size([128, 97])
+
+  0%|          | 22/6392 [03:34<16:41:45,  9.44s/it]
+src.shape=torch.Size([128, 241]), tgt_input.shape=torch.Size([128, 80]), src_mask.shape=torch.Size([241, 241]), torch.Size([128, 241])
+logits.shape=torch.Size([128, 80, 298])
+tgt_out.shape=torch.Size([128, 80])
+
+  0%|          | 23/6392 [03:44<17:22:54,  9.82s/it]
