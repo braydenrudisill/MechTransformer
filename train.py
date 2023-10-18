@@ -1,6 +1,8 @@
 import torch
 from torch import nn
 
+import math
+
 from src.models.transformer import TransformerModel, create_mask
 from src.data import EncodedBatch
 from src.data import load
@@ -8,6 +10,7 @@ from src.data import load
 import yaml
 from pathlib import Path
 
+import os
 import wandb
 from tqdm import tqdm
 from timeit import default_timer as timer
@@ -72,7 +75,16 @@ transformer = transformer.to(config['device'])
 PAD_IDX = 2
 
 criterion = nn.CrossEntropyLoss(ignore_index=PAD_IDX)
-optimizer = torch.optim.Adam(transformer.parameters(), lr=config['learning_rate'], betas=(0.9, 0.98), eps=1e-9)
+
+optimizer = torch.optim.Adam(transformer.parameters(), lr=config['learning_rate'], betas=(0.9, 0.998), eps=1e-8)
+
+
+def warmup(step: int):
+    step += 1
+    return config['emb_size'] ** (-0.5) * min(step ** (-0.5), step * config['warmup_steps'] ** (-1.5))
+
+
+lr_scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=warmup)
 
 
 def train_epoch(model, optimizer):
@@ -80,11 +92,11 @@ def train_epoch(model, optimizer):
     losses = 0
 
     batch: EncodedBatch
-    for batch in tqdm(train_data):
+    for i, batch in enumerate(train_data):
         src = batch.src_sequence_ids.to(config['device'])
         tgt = batch.tgt_sequence_ids.to(config['device'])
 
-        tgt_input = tgt
+        tgt_input = tgt[:, :-1]
 
         src_mask, tgt_mask, src_padding_mask, tgt_padding_mask = create_mask(src, tgt_input, config['device'])
 
@@ -92,15 +104,22 @@ def train_epoch(model, optimizer):
 
         optimizer.zero_grad()
 
-        tgt_out = tgt
+        tgt_out = tgt[:, 1:]
 
         loss_fn = torch.nn.CrossEntropyLoss(ignore_index=PAD_IDX)
         loss = loss_fn(logits.reshape(-1, logits.shape[-1]), tgt_out.reshape(-1))
         loss.backward()
 
         optimizer.step()
+        lr_scheduler.step()
+
         losses += loss.item()
         wandb.log({"train_batch_losses": loss.item()})
+        if i % 5 == 0:
+            if not os.path.isdir(folder := f'src/models/transformer/pretrained/USPTO_MIT_OCT_18/epoch-{i}/'):
+                os.mkdir(folder)
+
+            torch.save(transformer.state_dict(), folder + f'batch_{i}.pth')
 
     return losses / len(list(train_data))
 
@@ -141,5 +160,8 @@ for epoch in range(1, config['num_epochs'] + 1):
 
     # accuracy = compute_accuracy('mirana_data/test_src.txt','mirana_data/test_tgt.txt')
     print(f"Epoch: {epoch}, Train loss: {train_loss:.3f}, Val loss: {val_loss:.3f}, Epoch time = {(end_time - start_time):.3f}s")
-    torch.save(transformer.state_dict(), 'trained_models/USPTO_MIT_OCT_4.pth')
+
+    if not os.path.isdir(folder := 'src/models/transformer/pretrained/USPTO_MIT_OCT_18/'):
+        os.mkdir(folder)
+    torch.save(transformer.state_dict(), folder + f'epoch-{epoch}.pth')
 

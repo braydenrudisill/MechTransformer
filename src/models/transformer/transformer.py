@@ -13,6 +13,8 @@ def generate_square_subsequent_mask(size: int, device: str) -> torch.tensor:
     # return masks
 
     mask = torch.triu(torch.full((size, size), float('-inf'), device=device), diagonal=1)
+    mask = torch.zeros((size, size), device=device)
+
     return mask
 
 
@@ -30,7 +32,6 @@ def create_mask(src, tgt, device):
         .float()
         .masked_fill(mask == pad_idx, float('-inf'))
         .masked_fill(mask != pad_idx, 0.0)
-        # .transpose(1, 0)
         for mask in (src, tgt)
     )
 
@@ -50,12 +51,14 @@ class PositionalEncoding(nn.Module):
         pos_embedding[:, 0::2] = torch.sin(pos * den)
         pos_embedding[:, 1::2] = torch.cos(pos * den)
         pos_embedding = pos_embedding.unsqueeze(-2)
+        pos_embedding = pos_embedding.transpose(0, 1)
 
         self.dropout = nn.Dropout(dropout)
         self.register_buffer('pos_embedding', pos_embedding)
 
     def forward(self, token_embedding: Tensor):
-        return self.dropout(token_embedding + self.pos_embedding[:token_embedding.size(0), :])
+
+        return self.dropout(token_embedding + self.pos_embedding[:, :token_embedding.size(1)])
 
 
 # Helper Module to convert tensor of input indices into corresponding tensor of token embeddings
@@ -109,8 +112,8 @@ class TransformerModel(nn.Module):
         return self.generator(outs)
 
     def encode(self, src: Tensor, src_mask: Tensor):
-        return self.transformer.encoder(self.positional_encoding(
-                            self.src_tok_emb(src)), src_mask)
+        memory = self.transformer.encoder(self.positional_encoding(self.src_tok_emb(src)), src_mask)
+        return memory
 
     def decode(self, tgt: Tensor, memory: Tensor, tgt_mask: Tensor):
         return self.transformer.decoder(self.positional_encoding(

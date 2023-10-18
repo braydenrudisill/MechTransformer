@@ -1,33 +1,17 @@
 import torch
+import math
 
-src, tgt = torch.ones(5, 5), torch.ones(5, 5)
+maxlen = 5
+emb_size = 6
 
-pad_idx = 3
+den = torch.exp(- torch.arange(0, emb_size, 2) * math.log(10000) / emb_size)
+pos = torch.arange(0, maxlen).reshape(maxlen, 1)
 
-src[0, 1] = 3
-src[2, 3] = 3
+pos_embedding = torch.zeros((maxlen, emb_size))
 
-tgt[4, 1] = 3
-tgt[0, 3] = 3
+pos_embedding[:, 0::2] = torch.sin(pos * den)
+# pos_embedding[:, 1::2] = torch.cos(pos * den)
 
-# print(src, tgt)
-
-
-src_padding_mask, tgt_padding_mask = (
-        mask
-        .float()
-        .masked_fill(mask == pad_idx, float('-inf'))
-        .masked_fill(mask != pad_idx, 0.0)
-        for mask in (src, tgt)
-    )
-
-spm2 = (src == pad_idx)
-tpm2 = (tgt == pad_idx)
-
-print(src_padding_mask + src)
-print(tgt_padding_mask + tgt)
-#
-# print(spm2)
-# print(tpm2)
+print(pos_embedding.shape)
 
 

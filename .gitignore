@@ -1,2 +1,6 @@
-trained_models/*.pth
 data/*/*.txt
+*.pth
+.idea/
+**/__pycache__/
+wandb/
+
