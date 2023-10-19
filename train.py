@@ -40,7 +40,6 @@ wandb.init(
 
     # track hyperparameters and run metadata
     config={
-        'learning_rate': config['learning_rate'],
         'architecture': 'Mechformer',
         'dataset': config['data_path'] / 'src-train.txt',
         'tokenizer': config['data_path'] / 'tokenizer.json',
@@ -74,17 +73,19 @@ transformer = transformer.to(config['device'])
 
 PAD_IDX = 2
 
-criterion = nn.CrossEntropyLoss(ignore_index=PAD_IDX)
-
-optimizer = torch.optim.Adam(transformer.parameters(), lr=config['learning_rate'], betas=(0.9, 0.998), eps=1e-8)
+optimizer = torch.optim.Adam(transformer.parameters(), betas=(0.9, 0.998), eps=1e-8)
 
 
 def warmup(step: int):
     step += 1
-    return config['emb_size'] ** (-0.5) * min(step ** (-0.5), step * config['warmup_steps'] ** (-1.5))
+    learning_rate = config['emb_size'] ** (-0.5) * min(step ** (-0.5), step * config['warmup_steps'] ** (-1.5))
+    wandb.log({"learning_rate": learning_rate})
+    return learning_rate
 
 
 lr_scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=warmup)
+
+loss_fn = torch.nn.CrossEntropyLoss(ignore_index=PAD_IDX)
 
 
 def train_epoch(model, optimizer):
@@ -100,14 +101,14 @@ def train_epoch(model, optimizer):
 
         src_mask, tgt_mask, src_padding_mask, tgt_padding_mask = create_mask(src, tgt_input, config['device'])
 
-        logits = model(src, tgt_input, src_mask, tgt_mask,src_padding_mask, tgt_padding_mask, src_padding_mask)
+        logits = model(src, tgt_input, src_mask, tgt_mask, src_padding_mask, tgt_padding_mask, src_padding_mask)
 
         optimizer.zero_grad()
 
         tgt_out = tgt[:, 1:]
 
-        loss_fn = torch.nn.CrossEntropyLoss(ignore_index=PAD_IDX)
         loss = loss_fn(logits.reshape(-1, logits.shape[-1]), tgt_out.reshape(-1))
+
         loss.backward()
 
         optimizer.step()
@@ -140,7 +141,9 @@ def evaluate(model):
         logits = model(src, tgt_input, src_mask, tgt_mask, src_padding_mask, tgt_padding_mask, src_padding_mask)
 
         tgt_out = tgt[:, 1:]
-        loss = criterion(logits.reshape(-1, logits.shape[-1]), tgt_out.reshape(-1))
+
+        loss = loss_fn(logits.reshape(-1, logits.shape[-1]), tgt_out.reshape(-1))
+
         losses += loss.item()
 
     return losses / len(list(val_data))
